@@ -1,6 +1,7 @@
 import React from 'react';
 import TodoForm from './components/TodoForm.js';
-import TodoList from './components/TodoList.js'
+import TodoList from './components/TodoList.js';
+
 
 const thingsToDo = [
   {
@@ -72,6 +73,37 @@ class App extends React.Component {
       thingsToDo: [...this.state.thingsToDo, newItem]
     });
   };
+  toggleItem = itemId => {
+    // loop through all groceries, find the one on which we clicked,
+    // toggle the purchased field for that item
+    // else, leave the item untouched
+    this.setState({
+      thingsToDo: this.state.thingsToDo.map(item => {
+        if (item.id === itemId) {
+          return {
+            ...item,
+            completed: !item.completed
+          };
+        } else {
+          return item;
+        }
+      })
+    });
+  };
+  
+   clearCompleted= () => {
+  
+    this.setState({
+      thingsToDo: this.state.thingsToDo.filter(item => {
+        if (item.completed) {
+          return false;
+        } else {
+          return true;
+        }
+      })
+    });
+  };
+
 
   render() {
     // const { groceries, anotherStateProperty } = this.state;
@@ -81,7 +113,7 @@ class App extends React.Component {
           <h1>To Do List</h1>
           <TodoForm addItem={this.addItem} />
         </div>
-        <TodoList thingsToDo={this.state.thingsToDo} />
+        <TodoList thingsToDo={this.state.thingsToDo} toggleItem={this.toggleItem} clearCompleted={this.clearCompleted} />
       </div>
     );
   }

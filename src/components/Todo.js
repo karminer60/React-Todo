@@ -1,11 +1,13 @@
 import React from 'react';
 
-const Item = props => {
+const Todo = props => {
   return (
-    <div className={`item${props.item.completed ? ' completed' : ''}`}>
+    <div 
+    onClick={() => props.toggleItem(props.item.id)}
+    className={`item${props.item.completed ? ' completed' : ''}`}>
       <p>{props.item.name}</p>
     </div>
   );
 };
 
-export default Item;
+export default Todo;
