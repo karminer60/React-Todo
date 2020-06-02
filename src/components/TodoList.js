@@ -2,20 +2,20 @@
 // feel free to change this component.js into TodoList.js
 import React from 'react';
 
-import Item from './Item';
+import Item from './Todo.js';
 
-const GroceryList = props => {
+const TodoList = props => {
   // const sortedList = props.groceries.sort((a, b) => a.purchased - b.purchased);
   return (
     <div className="shopping-list">
-      {props.groceries.map(item => (
+      {props.thingsToDo.map(item => (
         <Item key={item.id} item={item} />
       ))}
-      <button className="clear-btn" onClick={props.clearPurchased}>
-        Clear Purchased
+      <button className="clear-btn" onClick={props.clearCompleted}>
+        Clear Completed
       </button>
     </div>
   );
 };
 
-export default GroceryList;
+export default TodoList;
